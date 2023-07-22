@@ -38,6 +38,7 @@ def search_local_max(f):
 def main():
     f = lambda x:-((x-1)**2)
     max_x = search_local_max(f)
+    print("Calculate local max x value of y=-(x-1)**2")
     print("Max x: ", max_x)
 
 
