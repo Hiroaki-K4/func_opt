@@ -55,6 +55,8 @@ You can try gradient method by runngin below command.
 python3 gradient_method.py
 ```
 
+<img src='images/gradient_method.png' width='500'>
+
 <br></br>
 
 ## Reference
