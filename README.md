@@ -45,7 +45,7 @@ $$
 x\leftarrow X\prime, h\leftarrow 2h
 $$
 
-#### 5. Go back to step2 and repeat them until $ \lVert f\prime(x) \rVert \leqq \epsilon$
+#### 5. Go back to step2 and repeat them until $\lVert f\prime(x) \rVert \leqq \epsilon$
 
 #### 6. Return the resulting x
 
