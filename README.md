@@ -67,7 +67,9 @@ You can try gradient method in the multivariable case by runngin below command. 
 python3 hill_climbing.py
 ```
 
-<img src='images/multi_1.png' width='350'><img src='images/multi_2.png' width='350'>
+<img src='images/multi_1.png' width='500'>
+
+<img src='images/multi_2.png' width='500'>
 
 <br></br>
 
