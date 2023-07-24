@@ -3,7 +3,7 @@ This repository implements representative methods for numerically computing extr
 
 <br></br>
 
-## Gradient method
+## Gradient method(1 variable case)
 The function $f(x)$ can be computed numerically as follows, knowing that there is only one x with $f\prime(x)=0$ in the domain under consideration.
 First, a point $x_0$, which is considered to be close to the maximum value, is given as an initial value. If $f\prime(x)=0$, take the maximum value there. If $f\prime(x)=0$ is positive, go right on the x-axis. If $f\prime(x)=0$ is negative, go left on the x-axis.
 
@@ -49,13 +49,25 @@ $$
 
 #### 6. Return the resulting x
 
-You can try gradient method by runngin below command.
+You can try gradient method by runngin below command. In this example, we want to find the maximum value of $y=-x^2$.
 
 ```bash
 python3 gradient_method.py
 ```
 
 <img src='images/gradient_method.png' width='500'>
+
+<br></br>
+
+## Gradient method(Multivariable case)
+
+You can try gradient method in the multivariable case by runngin below command. In this example, we want to find the maximum value of $z=-x^2-y^2$.
+
+```bash
+python3 hill_climbing.py
+```
+
+<img src='images/multi_1.png' width='350'><img src='images/multi_2.png' width='350'>
 
 <br></br>
 
