@@ -34,8 +34,8 @@ def search_local_max(f, derivative):
 
 
 def main():
-    f = lambda x:-((x-1)**2)
-    derivative = lambda f, a, h:(f(a + h) - f(a - h)) / (2 * h)
+    f = lambda x: -((x - 1) ** 2)
+    derivative = lambda f, a, h: (f(a + h) - f(a - h)) / (2 * h)
     max_x = round(search_local_max(f, derivative), 3)
     max_y = round(f(max_x), 3)
     print("Calculate local max x value of y=-(x-1)**2")
@@ -43,13 +43,15 @@ def main():
     print("Max y: ", max_y)
 
     x = np.linspace(-5, 7, 30)
-    y = -((x-1)**2)
+    y = -((x - 1) ** 2)
     plt.plot(x, y)
     label = "Local max: ({0},{1})".format(max_x, max_y)
-    plt.annotate(label, xy=(max_x, max_y),
-        arrowprops=dict(facecolor='red', shrink=0.05))
+    plt.title("y = -((x - 1) ** 2)")
+    plt.annotate(
+        label, xy=(max_x, max_y), arrowprops=dict(facecolor="red", shrink=0.05)
+    )
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
