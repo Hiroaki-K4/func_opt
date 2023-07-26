@@ -92,5 +92,16 @@ python3 hill_climbing.py
 
 <br></br>
 
+## Newton method(1 variable case)
+
+<img src='images/newton.png' width='500'>
+
+You can try newton method by runngin below command. In this example, we want to find the minimum value of $y=x^3-2x^2+x+3$.
+
+```bash
+python3 newton.py
+```
+
+
 ## Reference
 - [Optimization Mathematics That You Can Understand: From Fundamental Principles to Calculation Methods](https://www.amazon.co.jp/-/en/%E9%87%91%E8%B0%B7-%E5%81%A5%E4%B8%80/dp/4320017862/ref=sr_1_1?adgrpid=52832566945&hvadid=658804283256&hvdev=c&hvlocphy=9163303&hvnetw=g&hvqmt=e&hvrand=13823473628811259621&hvtargid=kwd-333784071069&hydadcr=27705_14678557&jp-ad-ap=0&keywords=%E3%81%93%E3%82%8C%E3%81%AA%E3%82%89%E5%88%86%E3%81%8B%E3%82%8B%E6%9C%80%E9%81%A9%E5%8C%96%E6%95%B0%E5%AD%A6&qid=1690020873&s=books&sr=1-1)
