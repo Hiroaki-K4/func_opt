@@ -89,7 +89,9 @@ def main():
     label = "Local max: ({0},{1})".format(
         round_local_max_pos[0], round_local_max_pos[1]
     )
-    ax.text(round_local_max_pos[0], round_local_max_pos[1], f(local_max_pos), label, None)
+    ax.text(
+        round_local_max_pos[0], round_local_max_pos[1], f(local_max_pos), label, None
+    )
     plt.show()
 
 

@@ -15,21 +15,31 @@ def newton_multi_var(grad_F, H):
     return x
 
 
-
 def main():
-    x , y = symbols('x y')
-    f = x**3 + y**3 - 9*x*y + 27
+    x, y = symbols("x y")
+    f = x**3 + y**3 - 9 * x * y + 27
     grad_x = f.diff(x)
     grad_y = f.diff(y)
     calculate_grad_f = lambda val: np.array(
-        [grad_x.subs([(x, val[0]), (y, val[1])]), grad_y.subs([(x, val[0]), (y, val[1])])]
+        [
+            grad_x.subs([(x, val[0]), (y, val[1])]),
+            grad_y.subs([(x, val[0]), (y, val[1])]),
+        ]
     )
-    H = lambda val: np.array([[f.diff(x, x).subs([(x, val[0]), (y, val[1])]), f.diff(x, y).subs([(x, val[0]), (y, val[1])])],
-                            [f.diff(x, y).subs([(x, val[0]), (y, val[1])]), f.diff(y, y).subs([(x, val[0]), (y, val[1])])]])
+    H = lambda val: np.array(
+        [
+            [
+                f.diff(x, x).subs([(x, val[0]), (y, val[1])]),
+                f.diff(x, y).subs([(x, val[0]), (y, val[1])]),
+            ],
+            [
+                f.diff(x, y).subs([(x, val[0]), (y, val[1])]),
+                f.diff(y, y).subs([(x, val[0]), (y, val[1])]),
+            ],
+        ]
+    )
     local_min = newton_multi_var(calculate_grad_f, H)
-    round_local_min_pos = np.array(
-        [round(local_min[0], 3), round(local_min[1], 3)]
-    )
+    round_local_min_pos = np.array([round(local_min[0], 3), round(local_min[1], 3)])
     print("Local min: ({0},{1})".format(round_local_min_pos[0], round_local_min_pos[1]))
 
     f = lambda val: val[0] ** 3 + val[1] ** 3 - 9 * val[0] * val[1] + 27
