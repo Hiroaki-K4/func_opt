@@ -85,10 +85,11 @@ def main():
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_zlabel("z")
+    ax.scatter([local_max_pos[0]], [local_max_pos[1]], [f(local_max_pos)], color="red")
     label = "Local max: ({0},{1})".format(
         round_local_max_pos[0], round_local_max_pos[1]
     )
-    ax.text(round_local_max_pos[0], round_local_max_pos[1], 0, label, None)
+    ax.text(round_local_max_pos[0], round_local_max_pos[1], f(local_max_pos), label, None)
     plt.show()
 
 
