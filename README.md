@@ -92,7 +92,7 @@ python3 hill_climbing.py
 
 <br></br>
 
-## Newton method(1 variable case)
+## Newton's method(1 variable case)
 If you can compute not only the first-order derivative $f\prime(x)$ but also the second-order derivative $f\prime\prime(x)$, there is a more efficient method than the gradient method. The value of the function $f(x)$ at a point $\bar{x}+\triangle x$ near point $\bar{x}$ on the x axis is Taylor expanded and written as follows.
 
 $$
@@ -111,7 +111,7 @@ $$
 x=\bar{x}-\frac{f\prime(\bar{x})}{f\prime\prime(\bar{x})} \tag{3}
 $$
 
-This iterative method is called the Newton method. The algorithm is as follows.
+This iterative method is called the Newton's method. The algorithm is as follows.
 
 ### Algorithm
 #### **1. Give initial value of $x$**
@@ -128,7 +128,7 @@ $$
 
 <br></br>
 
-The geometric meaning of Newton method is as follows. The higher order terms in Eq(1) ... is to approximate the function $f(x)$ by the following parabola
+The geometric meaning of Newton's method is as follows. The higher order terms in Eq(1) ... is to approximate the function $f(x)$ by the following parabola
 
 $$
 f_2(x)=f(\bar{x})+f\prime(\bar{x})(x-\bar{x})+\frac{1}{2}f\prime\prime(\bar{x})(x-\bar{x})^2 \tag{4}
@@ -138,7 +138,7 @@ The above equation is called the second-order approximation of the function $f(x
 
 <img src='images/newton_ex.png' width='500'>
 
-You can try newton method by runngin below command. In this example, we want to find the minimum value of $y=x^3-2x^2+x+3$.
+You can try Newton's method by runngin below command. In this example, we want to find the minimum value of $y=x^3-2x^2+x+3$.
 
 ```bash
 python3 newton.py
@@ -148,7 +148,7 @@ python3 newton.py
 
 <br></br>
 
-## Newton method(Multivariable case)
+## Newton's method(Multivariable case)
 The value of the function $f(x_1,...,x_n)$ at a point $(\bar{x_1}+\triangle x_1,...,\bar{x_n}+\triangle x_n)$ near point $(\bar{x_1},...,\bar{x_n})$ can be Taylor expanded and written as
 
 $$
@@ -196,7 +196,7 @@ $$
 
 #### **4. Go back to step2 and repeat this until $\|\ \triangle x \|<\delta$**
 
-You can try multivariable newton method by runngin below command. In this example, we want to find the minimum value of $f=x^3+y^3-9xy+27$.
+You can try multivariable Newton's method by running below command. In this example, we want to find the minimum value of $f=x^3+y^3-9xy+27$.
 
 ```bash
 python3 newton_multi_var.py
