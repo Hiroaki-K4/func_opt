@@ -16,7 +16,7 @@ $$
 h=sgn(f\prime(x))\lVert h \rVert, X\leftarrow x, X\prime \leftarrow x+h
 $$
 
-$sgn$ is the sign function.
+$sgn$ is the sign function. This is defined as $sgn(x)=1$ if $x>0$, $sgn(x)=0$ if $x=0$, and $sgn(x)=-1$ if $x<0$.
 
 #### 3. If $f(X) < f (X\prime)$, do the following calculations
 - Repeat following calculation until $f(X)\geqq f(X\prime)$
