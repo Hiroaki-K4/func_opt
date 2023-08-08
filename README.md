@@ -1,5 +1,5 @@
 # Function optimization
-This repository implements representative methods for numerically computing extrema of multivariate functions. All of these are iterative solutions in which the function searches for a direction in which the function increases or decreases from an initial position given to the domain of the function, moves in that direction, and repeats this until convergence.
+This repository implements typical methods for computing optimization for multivariable functions. These are all iterative solution methods that search for a direction in which the function increases or decreases from a given initial position in the domain of the function, move in that direction, and repeat this until convergence.
 
 <br></br>
 
@@ -207,5 +207,21 @@ python3 newton_multi_var.py
 
 <br></br>
 
+## Gauss Newton method
+Suppose that the following equation is theoretically known to hold for an m-dimensional vector $x_1,x_2,...,x_N$ if measurement error is not considered.
+
+$$
+F_l(x_\alpha,u)=0,\qquad l=1,2,...,r, \qquad \alpha=1,2,...,N \tag{1}
+$$
+
+$F_l(x_\alpha,u)$ is an arbitrary continuous function of the variable $x$. And $u$ is the sum of the common $n$ unknown parameters in the $r$ equations, written in the form of n-dimensional vectors.
+
+```bash
+python3 gauss_newton.py
+```
+
+<br></br>
+
 ## Reference
 - [Optimization Mathematics That You Can Understand: From Fundamental Principles to Calculation Methods](https://www.amazon.co.jp/-/en/%E9%87%91%E8%B0%B7-%E5%81%A5%E4%B8%80/dp/4320017862/ref=sr_1_1?adgrpid=52832566945&hvadid=658804283256&hvdev=c&hvlocphy=9163303&hvnetw=g&hvqmt=e&hvrand=13823473628811259621&hvtargid=kwd-333784071069&hydadcr=27705_14678557&jp-ad-ap=0&keywords=%E3%81%93%E3%82%8C%E3%81%AA%E3%82%89%E5%88%86%E3%81%8B%E3%82%8B%E6%9C%80%E9%81%A9%E5%8C%96%E6%95%B0%E5%AD%A6&qid=1690020873&s=books&sr=1-1)
+- [Gauss Newton method, Levenberg-Marquardt method in Python](https://daily-tech.hatenablog.com/entry/2017/03/21/063518)
