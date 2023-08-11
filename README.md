@@ -279,6 +279,112 @@ We can find approximate coefficients by gauss newton method.
 <br></br>
 
 ## Levenberg–Marquardt algorithm
+The Gauss Newton method does not require a second-order derivative, but this is an approximation that consists only of an approximation of the solution. If a good approximation of the solution is not available, it is advisable to first perform a coarse search, such as the gradient method, and then switch to the Gauss Newton method when the solution is somewhat closer. This is systematically done by the Levenberg-Marquardt method.
+First, consider the case of minimization of one variable $J(u)$. The iterative formula for the Newton method is as follows.
+
+$$
+u^{(K+1)}=u^{(K)}-\frac{J\prime(u^{(K)})}{J\prime\prime(u^{(K)})} \tag{1}
+$$
+
+This approximates the function $J(u)$ by a quadratic equation in the neighborhood of the current value $u^{(K)}$ and moves to the position of its extreme value. However, when the current value $u^{(K)}$ is far from the extreme value of the function $J(u)$, applying Eq(1) as it is may cause the solution to pass far beyond the solution. As a result, it could go in the wrong direction from there. To prevent this, it is safe to proceed somewhat conservatively. Therefore, we change Eq(1) as follows.
+
+$$
+u^{(K+1)}=u^{(K)}-\frac{J\prime(u^{(K)})}{CJ\prime\prime(u^{(K)})} \tag{2}
+$$
+
+However, $C$ is a number greater than 1. This $C$ should be large when the current value $u^{(K)}$ is far from the solution, and should be close to 1 as it gets closer to the solution. Eq(2) can be written as follows in the case of n variables.
+
+$$
+\begin{align*}
+\begin{pmatrix}
+u_1^{(K+1)} \\
+u_2^{(K+1)} \\
+... \\
+u_n^{(K+1)} \\
+\end{pmatrix}
+&=
+\begin{pmatrix}
+u_1^{(K)} \\
+u_2^{(K)} \\
+... \\
+u_n^{(K)} \\
+\end{pmatrix}-\frac{1}{C}
+\begin{pmatrix}
+(\partial J^{(K)}/\partial u_1)/(\partial^2 J^{(K)}/\partial u_1^2) \\
+(\partial J^{(K)}/\partial u_2)/(\partial^2 J^{(K)}/\partial u_2^2) \\
+... \\
+(\partial J^{(K)}/\partial u_n)/(\partial^2 J^{(K)}/\partial u_n^2) \\
+\end{pmatrix} \\
+&=
+\begin{pmatrix}
+u_1^{(K)} \\
+u_2^{(K)} \\
+... \\
+u_n^{(K)} \\
+\end{pmatrix}-\frac{1}{C}
+\begin{pmatrix}
+\partial^2 J^{(K)}/\partial u_1^2 & 0 & ... & 0 \\
+0 & \partial^2 J^{(K)}/\partial u_2^2 & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0 & ... & \partial^2 J^{(K)}/\partial u_n^2 \\
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\partial J^{(K)}/\partial u_1 \\
+\partial J^{(K)}/\partial u_2 \\
+... \\
+\partial J^{(K)}/\partial u_n \\
+\end{pmatrix} \tag{3}
+\end{align*}
+$$
+
+Written in vector and matrix symbols, it looks like this
+
+$$
+u^{(K+1)}=u^{(K)}-\frac{1}{C}D[H_u^{(K)}]^{-1}\nabla_u J^{(K)} \tag{4}
+$$
+
+$D[⋅]$ denotes the creation of a diagonal matrix with only the diagonal components taken out. On the other hand, Newton's method for finding the extreme values of an n-variable function $J(u)$ can be written as follows.
+
+$$
+u^{(K+1)}=u^{(K)}-H_u^{(K)-1}\nabla_u J^{(K)} \tag{5}
+$$
+
+The idea of the Levenberg-Marquardt method is to use Eq(4) when the current value $u^{(K)}$ is far away from the solution and to use Eq(5) when it approaches the solution. Therefore, Eq(4) and Eq(5) are put together as follows.
+
+$$
+u^{(K+1)}=u^{(K)}-(H_u^{(K)}+cD[H_u^{(K)}])^{-1}\nabla_u J^{(K)} \tag{6}
+$$
+
+where $c=0$ is the Newton method of Eq(5). On the other hand, when $c$ is increased, it works practically the same as Eq(4). Therefore, $c$ is taken to be large when the current value $u^{(K)}$ is far away from the solution, and is taken to be small as it approaches the solution. In practice, it is unknown how far away the current value $u^{(K)}$ is from the solution, but empirically it is considered effective to adjust the constant $c$ using the following algorithmic procedure.
+
+### Algorithm
+#### **1. Initializa c to 0.0001**
+#### **2. Give initial value of $u$**
+
+#### **3. Calculate the sum of squares $J$ using $u$**
+
+#### **4. Compute the gradient $\nabla_u J$ and the Hesse matrix $H_u$**
+
+#### **5. Calculate $u\prime$**
+
+$$
+u\prime \leftarrow u-(H_u+cD[H_u])^{-1}\nabla_u J
+$$
+
+#### **6. Calculate $J\prime$ by using $u\prime$**
+
+#### **7. If $J\prime>J$, update $c \leftarrow 10c$ and go back to step5**
+
+#### **8. If not, update as follows**
+
+$$
+c \leftarrow \frac{c}{10}, \qquad J \leftarrow J\prime, \qquad u \leftarrow u\prime
+$$
+
+
+#### **9. Go back to step4 and repeat this until $\|\ \triangle u \|<\delta$**
+
+You can try Levenberg–Marquardt algorithm by running below command. In this example, we want to find coefficients of a function($y = 3x^3 + 2y^2 - 9xy + 27$).
 
 ```bash
 python3 levenberg_marquardt.py
