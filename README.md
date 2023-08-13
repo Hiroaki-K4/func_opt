@@ -1,5 +1,5 @@
-# Function optimization
-This repository implements typical methods for computing optimization for multivariable functions. These are all iterative solution methods that search for a direction in which the function increases or decreases from a given initial position in the domain of the function, move in that direction, and repeat this until convergence.
+# Optimization
+This repository implements optimization calculations for multivariate functions and statistical optimization.
 
 <br></br>
 
