@@ -394,7 +394,9 @@ python3 levenberg_marquardt.py
 
 ## Statistical optimization
 
-
+```bash
+python3 unsupervised_learning.py
+```
 
 <br></br>
 
