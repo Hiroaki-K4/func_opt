@@ -392,11 +392,74 @@ python3 levenberg_marquardt.py
 
 <br></br>
 
-## Statistical optimization
+## Data classification(Unsupervised learning)
+Suppose we observe $N(=N_1+N_2)$ data $x_\alpha, \alpha=1,...,N$, where $N_1$ data independently generated from a normal distribution with mean $\mu_1$ and variance $\sigma_1^2$ and $N_2$ data independently generated from a normal distribution with mean $\mu_2$ and variance $\sigma_2^2$ are mixed. Each collection of data is called a class.
+At this point, how can we determine which class each data belongs to? Suppose that $\mu_1,\sigma_1^2,\mu_2,\sigma_2^2,N_1,N_2$ are all unknown and only the total data $N=N_1+N_2$ is known.
+
+<img src='images/unsupervised_learning_2.png' width='500'>
+
+Unsupervised learning considers each data $x_\alpha$ to belong with some probability across both classes. For example, $x_\alpha$ belongs to class $1$ with probability $1/3$ and class $2$ with probability $2/3$. The probability of belonging to each class is set as follows.
+
+$$
+w_\alpha^{(k)}=ProbabilityOfClassK, \quad \sum_{k=1,2}w_\alpha^{(k)}=1 \tag{1}
+$$
+
+This is estimated by iteration.
+
+Given the affiliation probability $w_\alpha^{(k)}$, the number of data belonging to each class is also probabilistically determined. Its expected value is no longer necessarily an integer, but a real number as follows.
+
+$$
+N_k = \sum_{\alpha=1}^N w_\alpha^{(k)}, \qquad k=1,2 \tag{2}
+$$
+
+Since the expected number of data $x_\alpha$ included in class $k$ can be interpreted as $w_\alpha^{(k)}$, the mean and variance of the data included in class $k$ are estimated as follows.
+
+$$
+\mu_k = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}x_\alpha, \qquad \sigma_k^2 = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}(x_\alpha - \mu_k)^2, \qquad k=1,2 \tag{3}
+$$
+
+From these, the probability densities $p_1(x)$ and $p_2(x)$ can be estimated, and thus the probability density $p(x)$ of the mixed data can be estimated. The likelihood $p(x_\alpha)$ of $x_\alpha$ is the sum of the likelihoods $\frac{N_1}{N}p_1(x_\alpha)$ and $\frac{N_2}{N}p_2(x_\alpha)$ corresponding to each class.
+Therefore, the probability of belonging to class $1$ and $2$ of this $x_\alpha$ is allocated proportionally in the ratio $\frac{N_1}{N}p_1(x_\alpha):\frac{N_2}{N}p_2(x_\alpha)$, respectively. The probability $w_\alpha^{(k)}$ of belonging to each class is as follows.
+
+$$
+w_\alpha^{(k)}=\frac{\pi_k p_k(x_\alpha)}{\sum_{l=1}^2 \pi_l p_l(x_\alpha)}, \qquad \pi_k=\frac{N_k}{N} \tag{4}
+$$
+
+The algorithm for classification into any $k$ classes is as follows.
+
+### Algorithm
+
+#### **1. Initializa $w_\alpha^{(k)}$**
+
+#### **2. Calculate $N_k, k=1,...,K$**
+
+$$
+\mu_k = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}x_\alpha, \qquad \sigma_k^2 = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}(x_\alpha - \mu_k)^2
+$$
+
+#### **3. Define $p_k(x), k=1,...,K$**
+
+$$
+p_k(x) = \frac{1}{\sqrt{2\pi\sigma_k^2}}e^{-(x-\mu_k)^2/2\sigma_k^2}
+$$
+
+#### **4. Update $w_\alpha^{(k)}$**
+
+$$
+w_\alpha^{(k)}=\frac{\pi_k p_k(x_\alpha)}{\sum_{l=1}^l \pi_l p_l(x_\alpha)}, \qquad \pi_k=\frac{N_k}{N}
+$$
+
+#### **5. If $w_\alpha^{(k)}$ is convergent, classify $x_\alpha$ into class $k$ where $w_\alpha^{(k)}$ is maximal. Otherwise, return to step 2.**
+
+You can try this unsurpervised learing algorithm by running below command.
 
 ```bash
 python3 unsupervised_learning.py
 ```
+
+The graph on the right side shows how unsupervised learning is used to classify classes.
+
+<img src='images/unsupervised_learning_1.png' width='500'>
 
 <br></br>
 
