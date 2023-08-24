@@ -392,7 +392,7 @@ python3 levenberg_marquardt.py
 
 <br></br>
 
-## Data classification(Unsupervised learning)
+# Data classification(Unsupervised learning)
 Suppose we observe $N(=N_1+N_2)$ data $x_\alpha, \alpha=1,...,N$, where $N_1$ data independently generated from a normal distribution with mean $\mu_1$ and variance $\sigma_1^2$ and $N_2$ data independently generated from a normal distribution with mean $\mu_2$ and variance $\sigma_2^2$ are mixed. Each collection of data is called a class.
 At this point, how can we determine which class each data belongs to? Suppose that $\mu_1,\sigma_1^2,\mu_2,\sigma_2^2,N_1,N_2$ are all unknown and only the total data $N=N_1+N_2$ is known.
 
@@ -427,29 +427,29 @@ $$
 
 The algorithm for classification into any $k$ classes is as follows.
 
-### Algorithm
+## Algorithm
 
-#### **1. Initializa $w_\alpha^{(k)}$**
+### 1. Initialize $w_\alpha^{(k)}$
 
-#### **2. Calculate $N_k, k=1,...,K$**
+### 2. Calculate $N_k, k=1,...,K$
 
 $$
 \mu_k = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}x_\alpha, \qquad \sigma_k^2 = \frac{1}{N_k} \sum_{\alpha=1}^N w_\alpha^{(k)}(x_\alpha - \mu_k)^2
 $$
 
-#### **3. Define $p_k(x), k=1,...,K$**
+### 3. Define $p_k(x), k=1,...,K$
 
 $$
 p_k(x) = \frac{1}{\sqrt{2\pi\sigma_k^2}}e^{-(x-\mu_k)^2/2\sigma_k^2}
 $$
 
-#### **4. Update $w_\alpha^{(k)}$**
+### 4. Update $w_\alpha^{(k)}$
 
 $$
 w_\alpha^{(k)}=\frac{\pi_k p_k(x_\alpha)}{\sum_{l=1}^l \pi_l p_l(x_\alpha)}, \qquad \pi_k=\frac{N_k}{N}
 $$
 
-#### **5. If $w_\alpha^{(k)}$ is convergent, classify $x_\alpha$ into class $k$ where $w_\alpha^{(k)}$ is maximal. Otherwise, return to step 2.**
+### 5. If $w_\alpha^{(k)}$ is convergent, classify $x_\alpha$ into class $k$ where $w_\alpha^{(k)}$ is maximal. Otherwise, return to step 2.
 
 You can try this unsurpervised learing algorithm by running below command.
 
@@ -460,6 +460,46 @@ python3 unsupervised_learning.py
 The graph on the right side shows how unsupervised learning is used to classify classes.
 
 <img src='images/unsupervised_learning_1.png' width='500'>
+
+<br></br>
+
+# Linear programming
+Consider an optimization problem of the following form
+
+$$
+\begin{cases}
+a_{11}x_1+a_{12}x_2+...++a_{1n}x_n\leq b_1\\
+a_{21}x_1+a_{22}x_2+...++a_{2n}x_n\leq b_2\\
+...\\
+a_{m1}x_1+a_{m2}x_2+...++a_{mn}x_n\leq b_m\\
+\end{cases}\\
+x_1\geq 0, \quad x_2\geq 0, \quad ..., \quad x_n\geq 0 \\
+f=c_1x_1+c_2x_2+...+c_nx_n\rightarrow max \tag{1}
+$$
+
+This problem is characterized by the following points:
+- The $n$ variables $x_1,...,x_n$ are all non-negative.
+- The $m$ constraints are linear inequalities in the variable $x_1,...,x_n$.
+- The function $f$ to be maximized is a linear inequality in variables $x_1,...,x_n$.
+
+A problem with these three characteristics is called linear programming. And the representation of it as Eq(1) is called the standard form of linear programming. The method of solving a linear program is called linear programming. A concrete example of linear programming is the following problem.
+
+```
+Two machines M_1 and M_2 are used to make two different containers A and B. It takes 2 minutes to use machine M_1 and 4 minutes to use machine M_2 to make one container A. On the other hand, it takes 8 minutes for machine M_1 and 4 minutes for machine M_2 to make one container B. The profit from making containers A and B is 29 yen and 45 yen per container, respectively. How should we plan to maximize the profit?
+```
+
+If only $x$ and $y$ containers $A$ and $B$ are made per hour, respectively, the profit per hour is $29x + 45y$ yen. The total time spent using machine $M_1$ is $2x+8y$ minutes, and the total time spent using machine $M_2$ is $4x+4y$ minutes. Since this must be completed within one hour, the optimal production plan is the solution to the following linear programming problem.
+
+$$
+\begin{cases}
+2x+8y\leq 60\\
+4x+4y\leq 60\\
+\end{cases}\\
+x\geq 0, \quad y\geq 0 \\
+f=29x+45y\rightarrow max \tag{2}
+$$
+
+## Slack variable
 
 <br></br>
 

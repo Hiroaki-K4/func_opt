@@ -62,8 +62,11 @@ def simplex_method(target_mat):
         target_cols.append(target_col)
         target_mat = transform_mat(target_mat, target_row, target_col)
 
+    print("final_mat: ")
+    print(target_mat)
     max_value = target_mat[target_mat.shape[0] - 1, 1]
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("x1: {0}, x2: {1}".format(target_mat[0, 1], target_mat[1, 1]))
     print("Max value is ", max_value)
 
 
