@@ -500,6 +500,110 @@ f=29x+45y\rightarrow max \tag{2}
 $$
 
 ## Slack variable
+Inequalities can be equated by adding non-negative numbers to the smaller side. Eq(2) can be rewritten as
+
+$$
+\begin{cases}
+2x+8y+\lambda_1 = 60\\
+4x+4y+\lambda_2 = 60\\
+\end{cases}\\
+x\geq 0, \quad y\geq 0, \quad \lambda_1\geq 0, \quad \lambda_2\geq 0 \\
+f=29x+45y\rightarrow max \tag{3}
+$$
+
+## Simplex method
+If the variables $x,y$ and the slack variables $\lambda_1,\lambda_2$ are numbered consecutively as $x1,x2,x3,x4$, they can be written as follows.
+
+$$
+\begin{cases}
+2x_1+8x_2+x_3 = 60\\
+4x_1+4x_2+x_4 = 60\\
+\end{cases}\\
+x_1\geq 0, \quad x_2\geq 0, \quad x_3\geq 0, \quad x_4\geq 0 \\
+f=29x_1+45x_2\rightarrow max \tag{4}
+$$
+
+$x_1,... ,x_4$, two of which are selected and transferred to the left side, and the right side is represented by the remaining variables. For example, if we choose $x_3,x_4$, we can write
+
+$$
+\begin{align*}
+x_3&=60-2x_1-8x_2 \qquad (1) \\
+x_4&=60-4x_1-4x_2 \qquad (2) \\
+f&=29x_1+45x_2\qquad (3)
+\end{align*} \tag{5}
+$$
+
+Putting all variables on the right side as $0$, we obtain the following solution.
+
+$$
+x_1=0, \quad x_2=0, \quad x_3=60, \quad x_4=60 \tag{6}
+$$
+
+These are all non-negative. However, this is not an optimal solution. This is because if we increase $x_1$ and $x_2$ slightly, $x_3$ and $x_4$ will remain positive, but the value of $f$ will increase. Therefore, we consider increasing $x_1$ or $x_2$ as large as possible as long as $x_3$ and $x_4$ are nonnegative.  
+First, consider increasing $x_1$. $x_1$ can be increased up to a maximum of $x_1=15$. As a result, $f$ increases by $\triangle f=29\times 15=435$.
+
+Next, consider increasing $x_2$. $x_2$ can be increased up to a maximum of $x_2=7.5$. As a result, $\triangle f=45\times 7.5=337.5$. As shown above, increasing $x_1$ will increase the value of $f$ more. Transform (2) in Eq(5) as follows
+
+$$
+x_1=15-x_2-\frac{1}{4}x_4 \tag{7}
+$$
+
+Substituting this into (1) and (3) in Eq. (5) and eliminating $x_1$, respectively, we obtain
+
+$$
+\begin{align*}
+x_3&=30-6x_2+\frac{1}{2}x_4 \\
+f&=435+16x_2-7.25x_4
+\end{align*} \tag{8}
+$$
+
+In summary, the above is as follows
+
+$$
+\begin{align*}
+x_3&=30-6x_2+\frac{1}{2}x_4 \qquad(4) \\
+x_1&=15-x_2+\frac{1}{4}x_4 \qquad(5) \\
+f&=435+16x_2-7.25x_4 \qquad(6) \\
+\end{align*} \tag{9}
+$$
+
+Putting all variables on the right side as $0$, we obtain the following solution.
+
+$$
+x_2=0, \quad x_4=0 \quad x_3=30, \quad x_1=15 \tag{10}
+$$
+
+However, this is not the optimal solution. This is because even if $x_2$ is slightly increased in (4) and (5), $x_3$ and $x_1$ remain positive, but the value of $f$ is increased from (6). So we increase $x_2$. $x_2$ can be increased up to a maximum of $x_2=5$. Then $f$ increases by $\triangle f=16\times 5=80$, resulting in $x_3$ on the left side of (4) becoming $0$. Then, (4) is transformed as follows.
+
+$$
+x_2=5-\frac{1}{6}x_3+\frac{1}{12}x_4 \tag{11}
+$$
+
+Substituting this into (5) and (6) and eliminating $x_2$ yields
+
+$$
+\begin{align*}
+x_2&=5-\frac{1}{6}x_3+\frac{1}{12}x_4 \qquad (7) \\
+x_1&=10+\frac{1}{6}x_3-\frac{1}{3}x_4 \qquad (8) \\
+f&=515-2.667x_3-5.917x_4 \qquad (9) \tag{12}
+\end{align*}
+$$
+
+Putting all variables on the right side as $0$, we obtain the following solution.
+
+$$
+x_3=0, \quad x_4=0, \quad x_2=5, \quad x_1=10 \tag{13}
+$$
+
+This is the optimal solution. This is because the coefficients of $x_3$ and $x_4$ in (9) are negative, so if $x_3$ and $x_4$ are increased from $0$ even slightly, the value of $f$ will decrease. Therefore, the maximum value of $f$ is $f=515$.
+
+You can try simplex method by running below command.
+
+```bash
+python3 simplex_method.py
+```
+
+<img src='images/simplex.png' width='500'>
 
 <br></br>
 
