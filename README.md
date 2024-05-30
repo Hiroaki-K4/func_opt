@@ -1,6 +1,14 @@
 # Optimization
 This repository implements optimization calculations for multivariate functions and statistical optimization.
 
+## Related articles I wrote
+- [Implementation of Simplex Method](https://medium.com/@hirok4/implementation-of-simplex-method-c8d40f647fe5)
+- [Implementing Class Classification by Unsupervised Learning](https://medium.com/@hirok4/implementing-class-classification-by-unsupervised-learning-e1b71cdabc42)
+- [Python Implementation of Levenberg–Marquardt Algorithm](https://medium.com/@hirok4/python-implementation-of-levenberg-marquardt-algorithm-8ff8abdec0f5)
+- [Python Implementation of Gauss Newton Method](https://medium.com/@hirok4/python-implementation-of-gauss-newton-method-2892307a2c65)
+- [Python Implementation of Newton’s Method](https://medium.com/@hirok4/python-implementation-of-newtons-method-9db1e863cf3c)
+- [Python Implementation of Gradient Method](https://medium.com/@hirok4/python-implementation-of-gradient-method-e6575c082e1f)
+
 <br></br>
 
 ## Gradient method(1 variable case)
